@@ -1,0 +1,16 @@
+{
+  "posts": [
+    {
+      "title": "add a new post",
+      "id": 9
+    },
+    {
+      "title": "add a new sample post",
+      "id": 10
+    },
+    {
+      "title": "updated this post",
+      "id": 11
+    }
+  ]
+}
