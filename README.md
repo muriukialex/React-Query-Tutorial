@@ -17,14 +17,6 @@ npm install
 npm install -g json-server
 ```
 
-#### After installing the JSON-server, create a db.json file with some data
-```json
-{
-  "posts": [
-    { "id": 1, "title": "json-server"}
-  ]
-}
-```
 #### then, start JSON Server
 ```bash
 json-server --watch db.json
