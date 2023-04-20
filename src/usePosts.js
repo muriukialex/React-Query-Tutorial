@@ -20,16 +20,15 @@ export const usePosts = () => {
 			client.invalidateQueries({ queryKey: ['posts'] })
 		},
 	})
-	return {
-		isLoading,
-		error,
-		data,
-		mutation,
-	}
-}
-
-export const useDeletePost = () => {
-	const mutation = useMutation({
+	const updateMutation = useMutation({
+		mutationFn: ({ id, payload }) => {
+			return axios.put(endpoint + '/' + id, payload)
+		},
+		onSuccess: () => {
+			client.invalidateQueries({ queryKey: ['posts'] })
+		},
+	})
+	const deleteMutation = useMutation({
 		mutationFn: id => {
 			return axios.delete(endpoint + '/' + id)
 		},
@@ -38,20 +37,11 @@ export const useDeletePost = () => {
 		},
 	})
 	return {
+		isLoading,
+		error,
+		data,
 		mutation,
-	}
-}
-
-export const useUpdatePost = () => {
-	const mutation = useMutation({
-		mutationFn: ({ id, payload }) => {
-			return axios.put(endpoint + '/' + id, payload)
-		},
-		onSuccess: () => {
-			client.invalidateQueries({ queryKey: ['posts'] })
-		},
-	})
-	return {
-		mutation,
+		updateMutation,
+		deleteMutation,
 	}
 }

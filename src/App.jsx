@@ -1,15 +1,13 @@
 import './App.css'
 import { useState } from 'react'
-import { usePosts, endpoint, useDeletePost, useUpdatePost } from './usePosts'
+import { usePosts } from './usePosts'
 import { useForm } from 'react-hook-form'
 import toast, { Toaster } from 'react-hot-toast'
 
 const App = () => {
 	const [hasTouched, setHasTouched] = useState(false)
 	const [editValue, setEditValue] = useState({})
-	const { isLoading, error, data, mutation } = usePosts()
-	const { mutation: deleteMutation } = useDeletePost()
-	const { mutation: updateMutation } = useUpdatePost()
+	const { isLoading, error, data, mutation, updateMutation, deleteMutation } = usePosts()
 	const { register, handleSubmit } = useForm()
 
 	const notify = message => toast.success(message)
@@ -71,7 +69,7 @@ const App = () => {
 
 			{hasTouched && (
 				<div className='editField'>
-					<input type='text' value={editValue.value} onChange={e => handleEditChange(e)} />
+					<input type='text' value={editValue.value} onChange={e => handleEditChange(e)} autoFocus />
 					<button onClick={() => handleUpdatePost(editValue.id, editValue.value)}>Update</button>
 				</div>
 			)}
